@@ -16,8 +16,8 @@ class Script extends Component {
             subnet: [],
             check: false,
             ip: "",
-            nPrefix:64,
-            hide:true
+            nPrefix: 64,
+            hide: true
         }
 
         this.runPrefix = this.runPrefix.bind(this)
@@ -29,11 +29,11 @@ class Script extends Component {
     }
 
     handleClick = (event) => {
-        var ip = this.state.ip        
-        var prefix=this.state.nPrefix
-        var i=event.target.value
+        var ip = this.state.ip
+        var prefix = this.state.nPrefix
+        var i = event.target.value
         this.props.history.push(`/subnet/${ip}/${prefix}/${i}`)
-      };
+    };
 
     runPrefix() {
         var arr = []
@@ -58,7 +58,7 @@ class Script extends Component {
         return (
             this.state.prefix.map((row, index) => {
                 return (
-                    <option key={index}  value={index +1}>{row}</option>
+                    <option key={index} value={index + 1}>{row}</option>
                 )
             })
         );
@@ -68,13 +68,13 @@ class Script extends Component {
             this.state.subnet.map((row, index) => {
                 return (
                     <div>
-                        <button className=" button is-white"  key={index} onClick={this.handleClick} value={index + this.state.nPrefix+ 1}>{row}</button >
+                        <button className=" button is-white" key={index} onClick={this.handleClick} value={index + this.state.nPrefix + 1}>{row}</button >
                     </div>
                 )
             })
         );
     }
-    
+
     checkIP() {
         var ip = document.getElementById("ip").value
         var prefix = parseInt(document.getElementById("prefix").value)
@@ -118,14 +118,14 @@ class Script extends Component {
             var arr = []
 
             for (var ii = prefix + 1, j = 1; ii <= 128; ii++ , j++) {
-                var x = BigNumber(2).power(j).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " networks /" + ii
+                var x = BigNumber(2).power(j).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " networks /" + ii
                 arr.push(x)
             }
             this.setState({
                 subnet: arr,
                 check: true,
                 ip: ip,
-                nPrefix:prefix
+                nPrefix: prefix
             })
 
 
@@ -138,15 +138,15 @@ class Script extends Component {
     render() {
         return (
             <div>
-                 <section class="hero is-success">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title content">
-                    Create With React
+                <section className="hero is-success">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title content">
+                                Create With React
                 </h1>
-            </div>
-        </div>
-    </section>
+                        </div>
+                    </div>
+                </section>
                 <section>
                     <div className="hero-body">
                         <div className="container ">
@@ -182,9 +182,9 @@ class Script extends Component {
                     <div className="container">
                         <div className="column is-9 is-offset-4">
                             <h3 className="title has-text-grey">Subnet</h3>
-                     
-                                {this.renderSubnet()}
-                           
+
+                            {this.renderSubnet()}
+
                         </div>
                     </div>
                 </section>
@@ -192,13 +192,13 @@ class Script extends Component {
                 <br></br>
                 <br></br>
                 <br></br>
-                <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>59160545</strong> by <a id="footer">Kachain Jantalat</a>
-            </p>
-        </div>
-    </footer>
+                <footer className="footer">
+                    <div className="content has-text-centered">
+                        <p>
+                            <strong>59160545</strong> by <a>Kachain Jantalat</a>
+                        </p>
+                    </div>
+                </footer>
 
             </div>
         )
