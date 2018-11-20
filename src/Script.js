@@ -138,6 +138,15 @@ class Script extends Component {
     render() {
         return (
             <div>
+                 <section class="hero is-success">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title content">
+                    Create With React
+                </h1>
+            </div>
+        </div>
+    </section>
                 <section>
                     <div className="hero-body">
                         <div className="container ">
@@ -183,7 +192,13 @@ class Script extends Component {
                 <br></br>
                 <br></br>
                 <br></br>
-
+                <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>59160545</strong> by <a id="footer">Kachain Jantalat</a>
+            </p>
+        </div>
+    </footer>
 
             </div>
         )
