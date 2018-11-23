@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css'
 import ScriptCalculate from './ScriptCalculate'
-import { Link } from 'react-router-dom'
 var Address6 = require('ip-address').Address6;
 var address
 var ip6 = require('ip6');
@@ -74,6 +73,17 @@ class Script extends Component {
             })
         );
     }
+    totalIPCalculate = (strIP) => {
+        var total = BigNumber(0)
+        for (var i = 0; i < strIP.length; i++) {
+            if (strIP.substring(i, i + 1) !== '0') {
+                var n = 32 - i - 1
+                total.plus(BigNumber(16).power(n).multiply(strIP.substring(i, i + 1)))
+            }
+
+        }
+        return total;
+    }
 
     checkIP() {
         var ip = document.getElementById("ip").value
@@ -92,15 +102,7 @@ class Script extends Component {
             var strIP = address.getBitsBase16(0, 128)
             console.log(fullIP)
             console.log(range)
-
-            var total = BigNumber(0)
-            for (var i = 0; i < strIP.length; i++) {
-                if (strIP.substring(i, i + 1) !== '0') {
-                    var n = 32 - i - 1
-                    total.plus(BigNumber(16).power(n).multiply(strIP.substring(i, i + 1)))
-                }
-
-            }
+            var total = this.totalIPCalculate(strIP);
             var num = 128 - prefix;
             var totolIP = BigNumber(2).power((num)).toString()
 
@@ -115,24 +117,27 @@ class Script extends Component {
             document.getElementById("integerIP").innerHTML = total.toString()
             document.getElementById("totalIP").innerHTML = totolIP.toString()
 
-            var arr = []
-
-            for (var ii = prefix + 1, j = 1; ii <= 128; ii++ , j++) {
-                var x = BigNumber(2).power(j).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " networks /" + ii
-                arr.push(x)
-            }
-            this.setState({
-                subnet: arr,
-                check: true,
-                ip: ip,
-                nPrefix: prefix
-            })
+            this.subnetCalculate(prefix, ip);
 
 
 
         } else {
             document.getElementById("error").innerHTML = "IP is not IPV6"
         }
+    }
+    subnetCalculate = (prefix, ip) => {
+        var arr = []
+
+        for (var ii = prefix + 1, j = 1; ii <= 128; ii++ , j++) {
+            var x = BigNumber(2).power(j).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " networks /" + ii
+            arr.push(x)
+        }
+        this.setState({
+            subnet: arr,
+            check: true,
+            ip: ip,
+            nPrefix: prefix
+        })
     }
 
     render() {
