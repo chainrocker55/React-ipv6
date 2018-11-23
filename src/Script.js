@@ -168,9 +168,12 @@ class Script extends Component {
                                         </div>
                                         <div className="field">
                                             <p>Prefix length</p>
-                                            <select aria-label="Prefix length" id="prefix" title="Prefix length" className="button">
-                                                {this.renderPrefix()}
-                                            </select>
+                                            <div className="select">
+                                                <select id="prefix" title="Prefix length">
+                                                    {this.renderPrefix()}
+                                                </select>
+                                            </div>
+
                                         </div>
 
                                         <div className="field">
