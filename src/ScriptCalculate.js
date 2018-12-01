@@ -4,7 +4,7 @@ class ScriptCalculate extends Component {
     render() {
         return (
             <div>
-                <section id="hide">
+                <section id="hide" style={{ display: (this.props.showing ? 'block' : 'none') }}>
                     <div className="container">
                         <div className="column is-9 is-offset-4">
                             <h3 className="title has-text-grey">Calculated</h3>

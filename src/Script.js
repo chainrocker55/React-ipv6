@@ -16,7 +16,7 @@ class Script extends Component {
             check: false,
             ip: "",
             nPrefix: 64,
-            hide: true
+            showing: false
         }
 
         this.runPrefix = this.runPrefix.bind(this)
@@ -25,6 +25,15 @@ class Script extends Component {
     }
     componentWillMount() {
         this.runPrefix()
+        
+    }
+    show=()=>{
+        document.getElementById("hide").style.display='block'
+        document.getElementById("hide2").style.display='block'
+    }
+    hide=()=>{
+        document.getElementById("hide").style.display='none'
+        document.getElementById("hide2").style.display='none'
     }
 
     handleClick = (event) => {
@@ -35,6 +44,7 @@ class Script extends Component {
     };
 
     runPrefix() {
+         
         var arr = []
         for (var i = 1; i < 129; i++) {
             var number;
@@ -119,10 +129,11 @@ class Script extends Component {
 
             this.subnetCalculate(prefix, ip);
 
-
+            this.show();
 
         } else {
             document.getElementById("error").innerHTML = "IP is not IPV6"
+            this.hide()
         }
     }
     subnetCalculate = (prefix, ip) => {
@@ -141,6 +152,7 @@ class Script extends Component {
     }
 
     render() {
+        const { showing } = this.state;
         return (
             <div>
                 <section className="hero is-success">
@@ -185,8 +197,8 @@ class Script extends Component {
                         </div>
                     </div>
                 </section>
-                <ScriptCalculate />
-                <section>
+                <ScriptCalculate props={showing} />
+                <section id='hide2' style={{ display: (showing ? 'block' : 'none') }}>
                     <div className="container">
                         <div className="column is-9 is-offset-4">
                             <h3 className="title has-text-grey">Subnet</h3>
@@ -207,7 +219,6 @@ class Script extends Component {
                         </p>
                     </div>
                 </footer>
-
             </div>
         )
     }
