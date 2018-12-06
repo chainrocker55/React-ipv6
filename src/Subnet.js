@@ -60,6 +60,15 @@ class Subnet extends Component {
         return (
             <div>
                 <section>
+                <section className="hero is-success">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title content">
+                                Create With React
+                            </h1>
+                        </div>
+                    </div>
+                </section>
                     <div className="container">
                         <div className="column is-9 is-offset-4">
                             <h3 className="title">Subnet</h3>

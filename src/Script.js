@@ -160,7 +160,7 @@ class Script extends Component {
                         <div className="container">
                             <h1 className="title content">
                                 Create With React
-                </h1>
+                            </h1>
                         </div>
                     </div>
                 </section>
